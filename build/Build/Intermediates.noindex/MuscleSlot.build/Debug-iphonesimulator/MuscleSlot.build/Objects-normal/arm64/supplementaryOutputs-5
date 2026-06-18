@@ -1,0 +1,23 @@
+{
+  "/Users/uebetsunawayuuya/MuscleSlot/MuscleSlot/Views/HistoryScreen.swift" : {
+    "const-values" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/HistoryScreen.swiftconstvalues",
+    "dependencies" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/HistoryScreen.d",
+    "diagnostics" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/HistoryScreen.dia",
+    "object" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/HistoryScreen.o",
+    "swift-dependencies" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/HistoryScreen.swiftdeps"
+  },
+  "/Users/uebetsunawayuuya/MuscleSlot/MuscleSlot/Views/OnboardingScreen.swift" : {
+    "const-values" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/OnboardingScreen.swiftconstvalues",
+    "dependencies" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/OnboardingScreen.d",
+    "diagnostics" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/OnboardingScreen.dia",
+    "object" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/OnboardingScreen.o",
+    "swift-dependencies" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/OnboardingScreen.swiftdeps"
+  },
+  "/Users/uebetsunawayuuya/MuscleSlot/MuscleSlot/Views/ReelView.swift" : {
+    "const-values" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/ReelView.swiftconstvalues",
+    "dependencies" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/ReelView.d",
+    "diagnostics" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/ReelView.dia",
+    "object" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/ReelView.o",
+    "swift-dependencies" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/ReelView.swiftdeps"
+  }
+}

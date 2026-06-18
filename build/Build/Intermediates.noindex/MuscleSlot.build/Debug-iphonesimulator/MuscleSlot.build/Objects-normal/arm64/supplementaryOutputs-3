@@ -1,0 +1,23 @@
+{
+  "/Users/uebetsunawayuuya/MuscleSlot/MuscleSlot/Model/SlotResult.swift" : {
+    "const-values" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/SlotResult.swiftconstvalues",
+    "dependencies" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/SlotResult.d",
+    "diagnostics" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/SlotResult.dia",
+    "object" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/SlotResult.o",
+    "swift-dependencies" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/SlotResult.swiftdeps"
+  },
+  "/Users/uebetsunawayuuya/MuscleSlot/MuscleSlot/Support/FeedbackEngine.swift" : {
+    "const-values" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/FeedbackEngine.swiftconstvalues",
+    "dependencies" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/FeedbackEngine.d",
+    "diagnostics" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/FeedbackEngine.dia",
+    "object" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/FeedbackEngine.o",
+    "swift-dependencies" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/FeedbackEngine.swiftdeps"
+  },
+  "/Users/uebetsunawayuuya/MuscleSlot/MuscleSlot/Support/Theme.swift" : {
+    "const-values" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/Theme.swiftconstvalues",
+    "dependencies" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/Theme.d",
+    "diagnostics" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/Theme.dia",
+    "object" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/Theme.o",
+    "swift-dependencies" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/Theme.swiftdeps"
+  }
+}

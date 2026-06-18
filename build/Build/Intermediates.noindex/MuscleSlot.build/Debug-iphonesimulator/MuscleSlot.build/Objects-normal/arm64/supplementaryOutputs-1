@@ -1,0 +1,23 @@
+{
+  "/Users/uebetsunawayuuya/MuscleSlot/MuscleSlot/Model/AppState.swift" : {
+    "const-values" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/AppState.swiftconstvalues",
+    "dependencies" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/AppState.d",
+    "diagnostics" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/AppState.dia",
+    "object" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/AppState.o",
+    "swift-dependencies" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/AppState.swiftdeps"
+  },
+  "/Users/uebetsunawayuuya/MuscleSlot/MuscleSlot/Model/ChaosLevel.swift" : {
+    "const-values" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/ChaosLevel.swiftconstvalues",
+    "dependencies" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/ChaosLevel.d",
+    "diagnostics" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/ChaosLevel.dia",
+    "object" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/ChaosLevel.o",
+    "swift-dependencies" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/ChaosLevel.swiftdeps"
+  },
+  "/Users/uebetsunawayuuya/MuscleSlot/MuscleSlot/Model/Enums.swift" : {
+    "const-values" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/Enums.swiftconstvalues",
+    "dependencies" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/Enums.d",
+    "diagnostics" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/Enums.dia",
+    "object" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/Enums.o",
+    "swift-dependencies" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/Enums.swiftdeps"
+  }
+}

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>12</integer>
+	<key>logs</key>
+	<dict>
+		<key>44A21A85-F2F4-4FF1-A80D-393CB10F71C1</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>44A21A85-F2F4-4FF1-A80D-393CB10F71C1.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MuscleSlot project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MuscleSlot</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project MuscleSlot with scheme MuscleSlot</string>
+			<key>timeStartedRecording</key>
+			<real>803309100.441697</real>
+			<key>timeStoppedRecording</key>
+			<real>803309106.63479698</real>
+			<key>title</key>
+			<string>Building project MuscleSlot with scheme MuscleSlot</string>
+			<key>uniqueIdentifier</key>
+			<string>44A21A85-F2F4-4FF1-A80D-393CB10F71C1</string>
+		</dict>
+		<key>799457C2-2983-4BCF-873F-FBDBEB76026C</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>799457C2-2983-4BCF-873F-FBDBEB76026C.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MuscleSlot project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MuscleSlot</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project MuscleSlot with scheme MuscleSlot</string>
+			<key>timeStartedRecording</key>
+			<real>803307073.34863806</real>
+			<key>timeStoppedRecording</key>
+			<real>803307077.42985904</real>
+			<key>title</key>
+			<string>Building project MuscleSlot with scheme MuscleSlot</string>
+			<key>uniqueIdentifier</key>
+			<string>799457C2-2983-4BCF-873F-FBDBEB76026C</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

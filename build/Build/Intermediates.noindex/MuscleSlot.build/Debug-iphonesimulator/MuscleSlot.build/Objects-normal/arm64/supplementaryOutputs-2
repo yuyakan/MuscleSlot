@@ -1,0 +1,23 @@
+{
+  "/Users/uebetsunawayuuya/MuscleSlot/MuscleSlot/Model/Exercise.swift" : {
+    "const-values" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/Exercise.swiftconstvalues",
+    "dependencies" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/Exercise.d",
+    "diagnostics" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/Exercise.dia",
+    "object" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/Exercise.o",
+    "swift-dependencies" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/Exercise.swiftdeps"
+  },
+  "/Users/uebetsunawayuuya/MuscleSlot/MuscleSlot/Model/ExerciseDatabase.swift" : {
+    "const-values" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/ExerciseDatabase.swiftconstvalues",
+    "dependencies" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/ExerciseDatabase.d",
+    "diagnostics" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/ExerciseDatabase.dia",
+    "object" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/ExerciseDatabase.o",
+    "swift-dependencies" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/ExerciseDatabase.swiftdeps"
+  },
+  "/Users/uebetsunawayuuya/MuscleSlot/MuscleSlot/Model/SlotEngine.swift" : {
+    "const-values" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/SlotEngine.swiftconstvalues",
+    "dependencies" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/SlotEngine.d",
+    "diagnostics" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/SlotEngine.dia",
+    "object" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/SlotEngine.o",
+    "swift-dependencies" : "/Users/uebetsunawayuuya/MuscleSlot/build/Build/Intermediates.noindex/MuscleSlot.build/Debug-iphonesimulator/MuscleSlot.build/Objects-normal/arm64/SlotEngine.swiftdeps"
+  }
+}

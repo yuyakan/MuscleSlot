@@ -1,0 +1,40 @@
+{
+  "source": "/Users/uebetsunawayuuya/MuscleSlot/MuscleSlot/Views/OnboardingScreen.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "部位・種目・回数をスロットで決める。\nまずは今の環境を教えて。",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 42
+        }
+      },
+      {
+        "comment": "",
+        "key": "あとから家／ジムのワンタップで切り替えられます。",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 47
+        }
+      },
+      {
+        "comment": "",
+        "key": "MUSCLE",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 37
+        }
+      },
+      {
+        "comment": "",
+        "key": "SLOT",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 39
+        }
+      }
+    ]
+  },
+  "version": 1
+}

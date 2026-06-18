@@ -1,0 +1,32 @@
+{
+  "source": "/Users/uebetsunawayuuya/MuscleSlot/MuscleSlot/Views/SlotScreen.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "器具か種目選択を見直してね",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 37
+        }
+      },
+      {
+        "comment": "",
+        "key": "MUSCLE",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 60
+        }
+      },
+      {
+        "comment": "",
+        "key": "SLOT",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 62
+        }
+      }
+    ]
+  },
+  "version": 1
+}
