@@ -58,7 +58,9 @@ struct ExerciseSelectScreen: View {
         }
         .presentationBackground(.clear)
         .presentationDetents([.large])
-        .sheet(item: $detailExercise) { ex in detailSheet(ex) }
+        .sheet(item: $detailExercise) { ex in
+            ExerciseDetailSheet(exercise: ex) { detailExercise = nil }
+        }
     }
 
     // MARK: - 部位セクション（見出し＋種目リスト2カラム）
@@ -199,7 +201,7 @@ struct ExerciseSelectScreen: View {
         let isOn = app.isEnabled(exercise)
         return HStack(spacing: 10) {
             VStack(alignment: .leading, spacing: 1) {
-                Text(exercise.name)
+                Text(exercise.displayName)
                     .font(Brand.Font.body)
                     .foregroundStyle(isOn ? Brand.textPrimary : Brand.textTertiary)
                     .lineLimit(1).minimumScaleFactor(0.8)
@@ -208,7 +210,7 @@ struct ExerciseSelectScreen: View {
                     .foregroundStyle(isOn ? accent.opacity(0.9) : Brand.textTertiary)
             }
             Spacer(minLength: 4)
-            if !exercise.detail.isEmpty {
+            if !exercise.detail.isEmpty || !exercise.steps.isEmpty {
                 Button { detailExercise = exercise } label: {
                     Image(systemName: "info.circle")
                         .font(.system(size: 15, weight: .semibold))
@@ -244,38 +246,4 @@ struct ExerciseSelectScreen: View {
         }
     }
 
-    private func metaLine(_ exercise: Exercise) -> String {
-        let equip = exercise.equipment.isEmpty
-            ? Equipment.bodyweight.displayName
-            : exercise.equipment.map(\.displayName).joined(separator: "・")
-        let reps = "\(exercise.repRange.lowerBound)〜\(exercise.repRange.upperBound)\(exercise.unit.suffix)"
-        return "\(exercise.intensity.displayName) ・ \(equip) ・ \(reps)"
-    }
-
-    // MARK: - 説明シート
-
-    private func detailSheet(_ ex: Exercise) -> some View {
-        ZStack {
-            Brand.fixedBackground()
-            VStack(spacing: 0) {
-                SheetHandle(title: ex.name, accent: accent) { detailExercise = nil }
-                ScrollView(showsIndicators: false) {
-                    VStack(alignment: .leading, spacing: 14) {
-                        HStack(spacing: 10) {
-                            Label(ex.bodyPart.displayName, systemImage: ex.bodyPart.symbol)
-                            Text(metaLine(ex))
-                        }
-                        .font(Brand.Font.label).foregroundStyle(accent)
-                        Text(ex.detail.isEmpty ? "説明準備中" : ex.detail)
-                            .font(Brand.Font.body).foregroundStyle(Brand.textSecondary)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(18)
-                }
-            }
-        }
-        .presentationBackground(.clear)
-        .presentationDetents([.medium])
-    }
 }

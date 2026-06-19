@@ -23,10 +23,26 @@ struct MuscleSlotApp: App {
 struct RootView: View {
     @Environment(AppState.self) private var app
 
+    /// スプラッシュ表示中フラグ。一定時間後にフェードで本編へ。
+    @State private var showSplash = true
+
     var body: some View {
-        // オンボーディング（器具プリセット選択）は廃止。器具は AppState の既定
-        // （宅トレ＝自重）で開始し、種目ボタンの絞り込みからいつでも変更できる。
-        MainTabView()
+        ZStack {
+            // オンボーディング（器具プリセット選択）は廃止。器具は AppState の既定
+            // （宅トレ＝自重）で開始し、種目ボタンの絞り込みからいつでも変更できる。
+            MainTabView()
+
+            if showSplash {
+                SplashView()
+                    .transition(.opacity)
+                    .zIndex(1)
+            }
+        }
+        .task {
+            // スプラッシュを約1.6秒見せてからフェードアウト。
+            try? await Task.sleep(for: .seconds(1.6))
+            withAnimation(.easeInOut(duration: 0.5)) { showSplash = false }
+        }
     }
 }
 

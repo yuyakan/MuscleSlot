@@ -11,9 +11,12 @@ import SwiftUI
 
 extension String {
     /// 日本語ロケールを付与した AttributedString。Text(_:) に渡して使う。
+    /// 英語ロケールでは言語タグを付けない（英語テキストに日本語の禁則改行を当てないため）。
     var jaWrapped: AttributedString {
         var s = AttributedString(self)
-        s.languageIdentifier = "ja"
+        if !ExerciseTranslations.usesEnglish {
+            s.languageIdentifier = "ja"
+        }
         return s
     }
 }

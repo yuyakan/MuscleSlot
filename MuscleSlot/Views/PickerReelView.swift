@@ -18,7 +18,7 @@ struct PickerReelView<Item: Hashable>: View {
     let accent: Color
     var rowHeight: CGFloat = 96
     /// 項目が空のときの案内文。
-    var emptyHint: String = "なし"
+    var emptyHint: String = String(localized: "なし")
 
     /// 1項目の高さ（選択バンドと一致させる）。
     private let itemHeight: CGFloat = 44
@@ -56,13 +56,6 @@ struct PickerReelView<Item: Hashable>: View {
                 } else {
                     drum
                 }
-
-                // 中央の選択枠（ここに来た項目が選択中）。
-                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                    .strokeBorder(accent.opacity(0.6), lineWidth: 1.5)
-                    .frame(height: itemHeight)
-                    .padding(.horizontal, 6)
-                    .allowsHitTesting(false)
 
                 // 上下のフェード（覗き窓）
                 VStack {

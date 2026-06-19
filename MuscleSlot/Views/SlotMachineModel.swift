@@ -79,7 +79,7 @@ final class SlotMachineModel {
         if pattern.showsExerciseReel {
             phase = .spinningExercise
             await spinTicks(duration: durationUnit, app: app)
-            exerciseLabel = outcome.exercise.name
+            exerciseLabel = outcome.exercise.displayName
             feedback.lock(enabled: app.hapticsEnabled, strong: lastReel == .spinningExercise)
             feedback.lockSound(enabled: app.soundEnabled)
         }

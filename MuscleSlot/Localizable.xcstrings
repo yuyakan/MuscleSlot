@@ -1,0 +1,480 @@
+{
+  "sourceLanguage" : "ja",
+  "strings" : {
+    "%lld" : {
+
+    },
+    "%lld〜%lld%@" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld〜%2$lld%3$@"
+          }
+        }
+      }
+    },
+    "%lld/%lld" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld/%2$lld"
+          }
+        }
+      }
+    },
+    "MUSCLE" : {
+
+    },
+    "OFF" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Off"
+          }
+        }
+      }
+    },
+    "SLOT" : {
+
+    },
+    "あとから家／ジムのワンタップで切り替えられます。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can switch between home and gym anytime with one tap."
+          }
+        }
+      }
+    },
+    "おまかせ" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Surprise Me"
+          }
+        }
+      }
+    },
+    "ダンベル" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dumbbell"
+          }
+        }
+      }
+    },
+    "ダンベル・ベンチ・バンド・自重" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dumbbells, bench, bands, bodyweight"
+          }
+        }
+      }
+    },
+    "なし" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "None"
+          }
+        }
+      }
+    },
+    "バーベル" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Barbell"
+          }
+        }
+      }
+    },
+    "バンド" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Band"
+          }
+        }
+      }
+    },
+    "フル" : {
+      "comment" : "tab: full random",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Full"
+          }
+        }
+      }
+    },
+    "フルジム" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Full Gym"
+          }
+        }
+      }
+    },
+    "ホームジム" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Home Gym"
+          }
+        }
+      }
+    },
+    "マシン類" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Machines"
+          }
+        }
+      }
+    },
+    "上の絞り込みで器具を増やすと種目が出ます" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add equipment in the filter above to see exercises"
+          }
+        }
+      }
+    },
+    "中重量" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Moderate"
+          }
+        }
+      }
+    },
+    "体幹" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Core"
+          }
+        }
+      }
+    },
+    "全ON" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All On"
+          }
+        }
+      }
+    },
+    "全部入り" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Everything included"
+          }
+        }
+      }
+    },
+    "動作" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How to"
+          }
+        }
+      }
+    },
+    "動画で見る" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Watch video"
+          }
+        }
+      }
+    },
+    "右上の種目から\n設定を見直してね" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adjust your selection\nfrom Exercises (top right)"
+          }
+        }
+      }
+    },
+    "器具か種目選択を見直してね" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check your equipment or exercise selection"
+          }
+        }
+      }
+    },
+    "回" : {
+      "comment" : "rep unit suffix; English includes a leading space",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " reps"
+          }
+        }
+      }
+    },
+    "回数" : {
+      "comment" : "tab: reps",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reps"
+          }
+        }
+      }
+    },
+    "宅トレ（自重）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Home (Bodyweight)"
+          }
+        }
+      }
+    },
+    "実用" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Practical"
+          }
+        }
+      }
+    },
+    "懸垂バー" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pull-Up Bar"
+          }
+        }
+      }
+    },
+    "有効な種目が0件。器具の絞り込みを見直してね。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No exercises enabled. Check your equipment filter."
+          }
+        }
+      }
+    },
+    "秒" : {
+      "comment" : "seconds unit suffix; English includes a leading space",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " sec"
+          }
+        }
+      }
+    },
+    "種目" : {
+      "comment" : "tab: exercise",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exercise"
+          }
+        }
+      }
+    },
+    "種目数 %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld exercises"
+          }
+        }
+      }
+    },
+    "絞り込み" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filter"
+          }
+        }
+      }
+    },
+    "肩" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shoulders"
+          }
+        }
+      }
+    },
+    "背中" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back"
+          }
+        }
+      }
+    },
+    "胸" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chest"
+          }
+        }
+      }
+    },
+    "脚" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legs"
+          }
+        }
+      }
+    },
+    "腕" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arms"
+          }
+        }
+      }
+    },
+    "自重" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bodyweight"
+          }
+        }
+      }
+    },
+    "自重のみ（＋懸垂バーは任意）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bodyweight only (pull-up bar optional)"
+          }
+        }
+      }
+    },
+    "説明準備中" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Description coming soon"
+          }
+        }
+      }
+    },
+    "軽め" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Light"
+          }
+        }
+      }
+    },
+    "部位" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muscle"
+          }
+        }
+      }
+    },
+    "部位・種目・回数をスロットで決める。\nまずは今の環境を教えて。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Let the slot machine pick your muscle, exercise, and reps.\nFirst, tell us your setup."
+          }
+        }
+      }
+    },
+    "部位なし" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No muscle group"
+          }
+        }
+      }
+    },
+    "高重量" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heavy"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

@@ -65,7 +65,12 @@ struct SlotScreen: View {
             }
         }
         .sheet(isPresented: $showDetail) {
-            detailSheet
+            if let ex = detailExercise {
+                ExerciseDetailSheet(exercise: ex,
+                                    countLabel: machine.result?.countLabel) {
+                    showDetail = false
+                }
+            }
         }
         .sheet(isPresented: $showExerciseSelect) {
             ExerciseSelectScreen().environment(app)
@@ -180,11 +185,11 @@ struct SlotScreen: View {
             CardDeckView(
                 pool: exerciseSymbols,
                 isSpinning: machine.exerciseSpinning || machine.partSpinning,
-                resultTitle: machine.result?.exercise.name,
+                resultTitle: machine.result?.exercise.displayName,
                 resultSubtitle: machine.result?.bodyPart.displayName,
                 settled: machine.result != nil,
                 subtitleFor: { name in
-                    ExerciseDatabase.all.first { $0.name == name }?.bodyPart.displayName
+                    ExerciseDatabase.all.first { $0.displayName == name }?.bodyPart.displayName
                 },
                 onCenterChange: { centerCardName = $0 })
             .padding(.horizontal, 12)
@@ -211,7 +216,7 @@ struct SlotScreen: View {
     private func spinReels(rowHeight: CGFloat) -> some View {
         if pattern.showsPartReel {
             ReelView(
-                title: "部位",
+                title: String(localized: "部位"),
                 symbols: BodyPart.allCases.map(\.displayName),
                 display: machine.partLabel,
                 isSpinning: machine.partSpinning,
@@ -223,7 +228,7 @@ struct SlotScreen: View {
         }
         if pattern.showsExerciseReel {
             ReelView(
-                title: "種目",
+                title: String(localized: "種目"),
                 symbols: exerciseSymbols,
                 display: machine.exerciseLabel,
                 isSpinning: machine.exerciseSpinning,
@@ -235,7 +240,7 @@ struct SlotScreen: View {
         }
         if pattern.showsRepsReel {
             ReelView(
-                title: "回数",
+                title: String(localized: "回数"),
                 symbols: (1...20).map { "\($0)" },
                 display: machine.repsLabel,
                 isSpinning: machine.repsSpinning,
@@ -251,23 +256,23 @@ struct SlotScreen: View {
     @ViewBuilder
     private func manualPickReels(rowHeight: CGFloat) -> some View {
         PickerReelView(
-            title: "部位",
+            title: String(localized: "部位"),
             items: BodyPart.allCases,
             label: { $0.displayName },
             selection: bodyPartBinding,
             accent: accent,
             rowHeight: rowHeight,
-            emptyHint: "部位なし")
+            emptyHint: String(localized: "部位なし"))
         PickerReelView(
-            title: "種目",
+            title: String(localized: "種目"),
             items: pickableExercises(app.pickedBodyPart),
-            label: { $0.name },
+            label: { $0.displayName },
             selection: exerciseBinding,
             accent: accent,
             rowHeight: rowHeight,
-            emptyHint: "右上の種目から\n設定を見直してね")
+            emptyHint: String(localized: "右上の種目から\n設定を見直してね"))
         ReelView(
-            title: "回数",
+            title: String(localized: "回数"),
             symbols: (1...20).map { "\($0)" },
             display: machine.repsLabel,
             isSpinning: machine.repsSpinning,
@@ -280,7 +285,7 @@ struct SlotScreen: View {
 
     private var exerciseSymbols: [String] {
         let pool = ExerciseDatabase.available(with: app.equipment).filter { app.isEnabled($0) }
-        let names = pool.map(\.name).shuffled().prefix(12)
+        let names = pool.map(\.displayName).shuffled().prefix(12)
         return names.isEmpty ? ["？"] : Array(names)
     }
 
@@ -294,7 +299,7 @@ struct SlotScreen: View {
         case .partExercise:
             // カルーセル中央に見えている種目。未取得なら出せる種目の先頭。
             if let name = centerCardName,
-               let ex = ExerciseDatabase.all.first(where: { $0.name == name }) {
+               let ex = ExerciseDatabase.all.first(where: { $0.displayName == name }) {
                 return ex
             }
             return ExerciseDatabase.available(with: app.equipment)
@@ -309,93 +314,6 @@ struct SlotScreen: View {
     /// 説明対象があり、かつ説明文があるとき info ボタンを有効化。
     private var canShowDetail: Bool {
         detailExercise?.detail.isEmpty == false
-    }
-
-    // MARK: - 説明シート（種目リールのタップで開く）
-
-    @ViewBuilder
-    private var detailSheet: some View {
-        ZStack {
-            Brand.fixedBackground()
-            VStack(spacing: 0) {
-                SheetHandle(title: detailExercise?.name ?? "説明", accent: accent) {
-                    showDetail = false
-                }
-                ScrollView(showsIndicators: false) {
-                    VStack(alignment: .leading, spacing: 18) {
-                        if let ex = detailExercise {
-                            // メタ情報のチップ列
-                            metaChips(ex)
-
-                            // 概要（detail）
-                            if !ex.detail.isEmpty {
-                                Text(ex.detail)
-                                    .font(Brand.Font.body).foregroundStyle(Brand.textSecondary)
-                                    .fixedSize(horizontal: false, vertical: true)
-                            }
-
-                            // 動作手順
-                            if !ex.steps.isEmpty {
-                                stepsSection(ex.steps)
-                            } else if ex.detail.isEmpty {
-                                Text("説明準備中")
-                                    .font(Brand.Font.body).foregroundStyle(Brand.textTertiary)
-                            }
-                        }
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(18)
-                }
-            }
-        }
-        .presentationBackground(.clear)
-        .presentationDetents([.medium, .large])
-    }
-
-    /// 部位・回数・強度・器具をチップで並べる。
-    private func metaChips(_ ex: Exercise) -> some View {
-        HStack(spacing: 8) {
-            metaChip(ex.bodyPart.displayName, icon: ex.bodyPart.symbol)
-            if let result = machine.result {
-                metaChip(result.countLabel, icon: "number")
-            }
-            metaChip(ex.intensity.displayName, icon: "flame.fill")
-        }
-    }
-
-    private func metaChip(_ text: String, icon: String) -> some View {
-        HStack(spacing: 5) {
-            Image(systemName: icon).font(.system(size: 11, weight: .bold))
-            Text(text).font(Brand.Font.caption)
-        }
-        .foregroundStyle(accent)
-        .padding(.horizontal, 11).padding(.vertical, 7)
-        .background(
-            Capsule().fill(accent.opacity(0.14))
-                .overlay(Capsule().strokeBorder(accent.opacity(0.4), lineWidth: 1))
-        )
-    }
-
-    /// 番号バッジ付きの動作手順。
-    private func stepsSection(_ steps: [String]) -> some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Label("動作", systemImage: "figure.run")
-                .font(Brand.Font.headline).foregroundStyle(Brand.textPrimary)
-            ForEach(Array(steps.enumerated()), id: \.offset) { i, step in
-                HStack(alignment: .top, spacing: 12) {
-                    Text("\(i + 1)")
-                        .font(.system(size: 14, weight: .black, design: .rounded))
-                        .foregroundStyle(Brand.ink)
-                        .frame(width: 26, height: 26)
-                        .background(Circle().fill(grad).brandGlow(accent, radius: 4, strength: 0.4))
-                    Text(step)
-                        .font(Brand.Font.body).foregroundStyle(Brand.textSecondary)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.top, 3)
-                }
-            }
-        }
     }
 
     // MARK: - レバー列（右端）

@@ -22,12 +22,12 @@ enum BodyPart: String, Codable, CaseIterable, Identifiable, Hashable {
 
     var displayName: String {
         switch self {
-        case .chest:     return "胸"
-        case .back:      return "背中"
-        case .legs:      return "脚"
-        case .shoulders: return "肩"
-        case .arms:      return "腕"
-        case .core:      return "体幹"
+        case .chest:     return String(localized: "胸")
+        case .back:      return String(localized: "背中")
+        case .legs:      return String(localized: "脚")
+        case .shoulders: return String(localized: "肩")
+        case .arms:      return String(localized: "腕")
+        case .core:      return String(localized: "体幹")
         }
     }
 
@@ -68,12 +68,12 @@ enum Equipment: String, Codable, CaseIterable, Identifiable, Hashable {
 
     var displayName: String {
         switch self {
-        case .bodyweight: return "自重"
-        case .dumbbell:   return "ダンベル"
-        case .barbell:    return "バーベル"
-        case .machine:    return "マシン類"
-        case .band:       return "バンド"
-        case .pullupBar:  return "懸垂バー"
+        case .bodyweight: return String(localized: "自重")
+        case .dumbbell:   return String(localized: "ダンベル")
+        case .barbell:    return String(localized: "バーベル")
+        case .machine:    return String(localized: "マシン類")
+        case .band:       return String(localized: "バンド")
+        case .pullupBar:  return String(localized: "懸垂バー")
         }
     }
 
@@ -98,9 +98,9 @@ enum Intensity: String, Codable, CaseIterable, Hashable {
 
     var displayName: String {
         switch self {
-        case .heavy:    return "高重量"
-        case .moderate: return "中重量"
-        case .light:    return "軽め"
+        case .heavy:    return String(localized: "高重量")
+        case .moderate: return String(localized: "中重量")
+        case .light:    return String(localized: "軽め")
         }
     }
 }
@@ -111,10 +111,11 @@ enum RepUnit: String, Codable, Hashable {
     case reps     // 回
     case seconds  // 秒
 
+    /// 回数の単位表記。日本語は数値に直結（「12回」）、英語は半角スペース付き（「12 reps」）。
     var suffix: String {
         switch self {
-        case .reps:    return "回"
-        case .seconds: return "秒"
+        case .reps:    return String(localized: "回", comment: "rep unit suffix; English includes a leading space")
+        case .seconds: return String(localized: "秒", comment: "seconds unit suffix; English includes a leading space")
         }
     }
 
@@ -136,8 +137,8 @@ enum SlotMode: String, Codable, CaseIterable, Hashable {
 
     var displayName: String {
         switch self {
-        case .practical: return "実用"
-        case .chaos:     return "おまかせ"
+        case .practical: return String(localized: "実用")
+        case .chaos:     return String(localized: "おまかせ")
         }
     }
 }
@@ -154,9 +155,9 @@ enum SlotPattern: String, Codable, CaseIterable, Identifiable, Hashable {
 
     var displayName: String {
         switch self {
-        case .full:         return "フル"
-        case .partExercise: return "種目"
-        case .repsOnly:     return "回数"
+        case .full:         return String(localized: "フル", comment: "tab: full random")
+        case .partExercise: return String(localized: "種目", comment: "tab: exercise")
+        case .repsOnly:     return String(localized: "回数", comment: "tab: reps")
         }
     }
 
@@ -204,17 +205,17 @@ enum EquipmentPreset: String, Codable, CaseIterable, Identifiable, Hashable {
 
     var displayName: String {
         switch self {
-        case .homeBodyweight: return "宅トレ（自重）"
-        case .homeGym:        return "ホームジム"
-        case .fullGym:        return "フルジム"
+        case .homeBodyweight: return String(localized: "宅トレ（自重）")
+        case .homeGym:        return String(localized: "ホームジム")
+        case .fullGym:        return String(localized: "フルジム")
         }
     }
 
     var subtitle: String {
         switch self {
-        case .homeBodyweight: return "自重のみ（＋懸垂バーは任意）"
-        case .homeGym:        return "ダンベル・ベンチ・バンド・自重"
-        case .fullGym:        return "全部入り"
+        case .homeBodyweight: return String(localized: "自重のみ（＋懸垂バーは任意）")
+        case .homeGym:        return String(localized: "ダンベル・ベンチ・バンド・自重")
+        case .fullGym:        return String(localized: "全部入り")
         }
     }
 

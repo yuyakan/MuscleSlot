@@ -10,9 +10,22 @@
 		4B0581DD2FDEEA770045C0E1 /* MuscleSlot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MuscleSlot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		4B0581F02FDEEA790045C0E1 /* Exceptions for "MuscleSlot" folder in "MuscleSlot" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 4B0581DC2FDEEA770045C0E1 /* MuscleSlot */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		4B0581DF2FDEEA770045C0E1 /* MuscleSlot */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				4B0581F02FDEEA790045C0E1 /* Exceptions for "MuscleSlot" folder in "MuscleSlot" target */,
+			);
 			path = MuscleSlot;
 			sourceTree = "<group>";
 		};
@@ -86,11 +99,12 @@
 				};
 			};
 			buildConfigurationList = 4B0581D82FDEEA770045C0E1 /* Build configuration list for PBXProject "MuscleSlot" */;
-			developmentRegion = en;
+			developmentRegion = ja;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = 4B0581D42FDEEA770045C0E1;
 			minimizedProjectReferenceProxies = 1;
@@ -256,6 +270,7 @@
 				DEVELOPMENT_TEAM = 2NGCBTHK5K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MuscleSlot/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -288,6 +303,7 @@
 				DEVELOPMENT_TEAM = 2NGCBTHK5K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MuscleSlot/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
