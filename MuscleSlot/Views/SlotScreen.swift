@@ -23,9 +23,75 @@ struct SlotScreen: View {
     private var accent: Color { Brand.fixedAccent }
     private var grad: LinearGradient { Brand.fixedGradient }
 
+    // iPad 判定（regular×regular は iPhone では発生しない）。iPhone は常に false。
+    @Environment(\.horizontalSizeClass) private var hSizeClass
+    @Environment(\.verticalSizeClass) private var vSizeClass
+    private var isPad: Bool { hSizeClass == .regular && vSizeClass == .regular }
+
+    /// iPhone 横向きの基準サイズ（このサイズで描画してから iPad では等比拡大する）。
+    private let phoneBaseSize = CGSize(width: 844, height: 390)
+    private var phoneAspect: CGFloat { phoneBaseSize.width / phoneBaseSize.height }
+
     var body: some View {
+        Group {
+            if isPad {
+                // iPad: iPhone 基準サイズ(844×390)でレイアウトを組み、比率を保ったまま
+                // 画面いっぱいに「拡大（scaleEffect）」する。フォント・余白・グローも等比で大きくなる。
+                // レターボックス部分も地色を合わせる。
+                ZStack {
+                    Brand.fixedBackground().ignoresSafeArea()
+                    GeometryReader { screen in
+                        let box = inscribedSize(in: screen.size, aspect: phoneAspect)
+                        let scale = box.width / phoneBaseSize.width
+                        slotLayout
+                            .frame(width: phoneBaseSize.width, height: phoneBaseSize.height)
+                            .scaleEffect(scale)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    }
+                    .ignoresSafeArea()
+
+                    // iPad: ワードマークを画面左上に配置。
+                    wordmark
+                        .scaleEffect(1.4, anchor: .topLeading)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                        .padding(.leading, 28)
+                        .padding(.top, 20)
+
+                    // iPad: 種目一覧ボタンを画面右上に配置。
+                    exerciseListButton
+                        .scaleEffect(1.4, anchor: .topTrailing)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+                        .padding(.trailing, 28)
+                        .padding(.top, 20)
+                }
+            } else {
+                // iPhone: 従来どおり全面表示（コードパスは元のまま）。
+                slotLayout
+            }
+        }
+        .sheet(isPresented: $showDetail) {
+            if let ex = detailExercise {
+                ExerciseDetailSheet(exercise: ex,
+                                    countLabel: machine.result?.countLabel) {
+                    showDetail = false
+                }
+            }
+        }
+        .sheet(isPresented: $showExerciseSelect) {
+            ExerciseSelectScreen().environment(app)
+        }
+    }
+
+    /// スロット筐体本体。iPhone ではそのまま全面、iPad では比率固定のボックス内に描画される。
+    /// 中身は従来の iPhone レイアウトと同一（geo.size はラッパーが与える描画領域）。
+    private var slotLayout: some View {
         ZStack {
-            Brand.fixedBackground()
+            // iPhone は自前の地色を敷く。iPad は外側の全画面地色に任せ（継ぎ目防止）、ここは透明。
+            if isPad {
+                Color.clear
+            } else {
+                Brand.fixedBackground()
+            }
 
             GeometryReader { geo in
                 let safe = geo.safeAreaInsets
@@ -64,16 +130,16 @@ struct SlotScreen: View {
                 .padding(.bottom, 10)
             }
         }
-        .sheet(isPresented: $showDetail) {
-            if let ex = detailExercise {
-                ExerciseDetailSheet(exercise: ex,
-                                    countLabel: machine.result?.countLabel) {
-                    showDetail = false
-                }
-            }
-        }
-        .sheet(isPresented: $showExerciseSelect) {
-            ExerciseSelectScreen().environment(app)
+    }
+
+    /// 指定アスペクト比を保ったまま、与えられたサイズに収まる最大の矩形。
+    private func inscribedSize(in size: CGSize, aspect: CGFloat) -> CGSize {
+        if size.width / size.height > aspect {
+            // 縦が制約 → 高さいっぱい、幅は比率から算出。
+            return CGSize(width: size.height * aspect, height: size.height)
+        } else {
+            // 横が制約 → 幅いっぱい、高さは比率から算出。
+            return CGSize(width: size.width, height: size.width / aspect)
         }
     }
 
@@ -81,18 +147,30 @@ struct SlotScreen: View {
 
     private var topBar: some View {
         HStack(spacing: 10) {
-            HStack(spacing: 5) {
-                Text("MUSCLE").font(.system(size: 10, weight: .black, design: .rounded))
-                    .tracking(3).foregroundStyle(accent).brandGlow(accent, radius: 5)
-                Text("SLOT").font(.system(size: 13, weight: .black, design: .rounded))
-                    .tracking(5).foregroundStyle(Brand.textPrimary)
-            }
+            // iPad ではワードマーク／種目ボタンを画面の左上・右上のオーバーレイに出すので、
+            // ここでは隠す（場所だけ確保）。iPhone は従来どおり表示。
+            wordmark.opacity(isPad ? 0 : 1)
             Spacer()
             // 種目を選ぶ（器具フィルターも統合）。
-            capsuleButton(icon: "checklist") { showExerciseSelect = true }
+            exerciseListButton.opacity(isPad ? 0 : 1)
         }
         // 下タブと同じくらいの高さを確保して上下のバランスをそろえる。
         .frame(height: 49)
+    }
+
+    /// 種目一覧（種目設定）を開くボタン。
+    private var exerciseListButton: some View {
+        capsuleButton(icon: "checklist") { showExerciseSelect = true }
+    }
+
+    /// 「MUSCLE SLOT」ワードマーク。
+    private var wordmark: some View {
+        HStack(spacing: 5) {
+            Text("MUSCLE").font(.system(size: 10, weight: .black, design: .rounded))
+                .tracking(3).foregroundStyle(accent).brandGlow(accent, radius: 5)
+            Text("SLOT").font(.system(size: 13, weight: .black, design: .rounded))
+                .tracking(5).foregroundStyle(Brand.textPrimary)
+        }
     }
 
     // MARK: - 左パネル（上=設定 / 下=説明）。スロットを中央に寄せる役割。

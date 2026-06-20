@@ -14,6 +14,18 @@ struct ExerciseSelectScreen: View {
 
     @State private var detailExercise: Exercise?
 
+    // iPad 判定（regular×regular は iPhone では発生しない）。iPhone は常に false。
+    @Environment(\.horizontalSizeClass) private var hSizeClass
+    @Environment(\.verticalSizeClass) private var vSizeClass
+    private var isPad: Bool { hSizeClass == .regular && vSizeClass == .regular }
+    /// iPad では文字・チップを一回り大きく（iPhone は等倍）。
+    private var uiScale: CGFloat { isPad ? 1.35 : 1.0 }
+
+    /// iPad で size を uiScale 倍したフォント（iPhone は元のサイズ）。
+    private func scaled(_ size: CGFloat, weight: SwiftUI.Font.Weight, design: SwiftUI.Font.Design = .rounded) -> SwiftUI.Font {
+        .system(size: size * uiScale, weight: weight, design: design)
+    }
+
     private var accent: Color { Brand.fixedAccent }
     // 他画面（リール・カード）のネオンと同じ単色シアンで統一（2色グラデにしない）。
     private var grad: LinearGradient {
@@ -48,7 +60,7 @@ struct ExerciseSelectScreen: View {
                         }
                         if availableCount == 0 {
                             Label("有効な種目が0件。器具の絞り込みを見直してね。", systemImage: "exclamationmark.triangle.fill")
-                                .font(Brand.Font.caption).foregroundStyle(Brand.warning)
+                                .font(scaled(11, weight: .semibold)).foregroundStyle(Brand.warning)
                         }
                     }
                     .padding(.horizontal, 18)
@@ -58,6 +70,9 @@ struct ExerciseSelectScreen: View {
         }
         .presentationBackground(.clear)
         .presentationDetents([.large])
+        // iPad ではフォームシートが小さく見えるので、大きめのページサイズにする。
+        // iPhone は presentationSizing を無視し、従来どおり .large detent で表示される。
+        .presentationSizing(.page)
         .sheet(item: $detailExercise) { ex in
             ExerciseDetailSheet(exercise: ex) { detailExercise = nil }
         }
@@ -71,11 +86,11 @@ struct ExerciseSelectScreen: View {
         return VStack(alignment: .leading, spacing: 8) {
             // 見出し: 部位名 + 個数 + 全ON/全OFF
             HStack(spacing: 10) {
-                Image(systemName: part.symbol).font(.system(size: 14, weight: .bold))
+                Image(systemName: part.symbol).font(scaled(14, weight: .bold))
                     .foregroundStyle(accent)
-                Text(part.displayName).font(Brand.Font.headline)
+                Text(part.displayName).font(scaled(17, weight: .bold))
                     .foregroundStyle(Brand.textPrimary)
-                Text("\(on)/\(list.count)").font(Brand.Font.caption)
+                Text("\(on)/\(list.count)").font(scaled(11, weight: .semibold))
                     .foregroundStyle(Brand.textTertiary)
                 Spacer()
                 segButton(part: part)
@@ -83,7 +98,7 @@ struct ExerciseSelectScreen: View {
             // 種目: 2カラムの行リスト
             if list.isEmpty {
                 Text("上の絞り込みで器具を増やすと種目が出ます")
-                    .font(Brand.Font.caption).foregroundStyle(Brand.textTertiary)
+                    .font(scaled(11, weight: .semibold)).foregroundStyle(Brand.textTertiary)
                     .padding(.vertical, 6)
             } else {
                 LazyVGrid(
@@ -104,14 +119,14 @@ struct ExerciseSelectScreen: View {
         let allOff = list.allSatisfy { !app.isEnabled($0) }
         return HStack(spacing: 0) {
             Button { app.setExercises(part, enabled: true) } label: {
-                Text("全ON").font(Brand.Font.caption)
+                Text("全ON").font(scaled(11, weight: .semibold))
                     .foregroundStyle(allOn ? Brand.ink : Brand.textSecondary)
                     .padding(.horizontal, 12).padding(.vertical, 6)
                     .background(allOn ? AnyShapeStyle(grad) : AnyShapeStyle(Color.clear))
             }
             Rectangle().fill(Brand.hairline).frame(width: 1, height: 16)
             Button { app.setExercises(part, enabled: false) } label: {
-                Text("OFF").font(Brand.Font.caption)
+                Text("OFF").font(scaled(11, weight: .semibold))
                     .foregroundStyle(allOff ? Brand.ink : Brand.textSecondary)
                     .padding(.horizontal, 12).padding(.vertical, 6)
                     .background(allOff ? AnyShapeStyle(grad) : AnyShapeStyle(Color.clear))
@@ -131,8 +146,8 @@ struct ExerciseSelectScreen: View {
         HStack(spacing: 10) {
             HStack(spacing: 6) {
                 Image(systemName: "line.3.horizontal.decrease.circle.fill")
-                    .font(.system(size: 14, weight: .bold)).foregroundStyle(accent)
-                Text("絞り込み").font(Brand.Font.label).foregroundStyle(Brand.textSecondary)
+                    .font(scaled(14, weight: .bold)).foregroundStyle(accent)
+                Text("絞り込み").font(scaled(13, weight: .semibold)).foregroundStyle(Brand.textSecondary)
             }
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8) {
@@ -142,7 +157,7 @@ struct ExerciseSelectScreen: View {
                 }
             }
             Text("種目数 \(availableCount)")
-                .font(Brand.Font.caption).foregroundStyle(Brand.textTertiary)
+                .font(scaled(11, weight: .semibold)).foregroundStyle(Brand.textTertiary)
                 .fixedSize()
         }
         .padding(.horizontal, 12).padding(.vertical, 10)
@@ -158,9 +173,9 @@ struct ExerciseSelectScreen: View {
     private var closeButton: some View {
         Button { dismiss() } label: {
             Image(systemName: "xmark")
-                .font(.system(size: 15, weight: .bold))
+                .font(scaled(15, weight: .bold))
                 .foregroundStyle(Brand.textPrimary)
-                .frame(width: 40, height: 40)
+                .frame(width: 40 * uiScale, height: 40 * uiScale)
                 .background(Circle().fill(Brand.inkRaised)
                     .overlay(Circle().strokeBorder(Brand.hairline, lineWidth: 1)))
         }
@@ -174,8 +189,8 @@ struct ExerciseSelectScreen: View {
             FeedbackEngine.shared.lock(enabled: app.hapticsEnabled)
         } label: {
             HStack(spacing: 5) {
-                Image(systemName: item.symbol).font(.system(size: 11, weight: .bold))
-                Text(item.displayName).font(Brand.Font.caption)
+                Image(systemName: item.symbol).font(scaled(11, weight: .bold))
+                Text(item.displayName).font(scaled(11, weight: .semibold))
             }
             .foregroundStyle(isOn ? Brand.ink : Brand.textSecondary)
             .padding(.horizontal, 11).padding(.vertical, 7)
@@ -202,18 +217,18 @@ struct ExerciseSelectScreen: View {
         return HStack(spacing: 10) {
             VStack(alignment: .leading, spacing: 1) {
                 Text(exercise.displayName)
-                    .font(Brand.Font.body)
+                    .font(scaled(15, weight: .medium))
                     .foregroundStyle(isOn ? Brand.textPrimary : Brand.textTertiary)
                     .lineLimit(1).minimumScaleFactor(0.8)
                 Text("\(exercise.repRange.lowerBound)〜\(exercise.repRange.upperBound)\(exercise.unit.suffix)")
-                    .font(Brand.Font.caption)
+                    .font(scaled(11, weight: .semibold))
                     .foregroundStyle(isOn ? accent.opacity(0.9) : Brand.textTertiary)
             }
             Spacer(minLength: 4)
             if !exercise.detail.isEmpty || !exercise.steps.isEmpty {
                 Button { detailExercise = exercise } label: {
                     Image(systemName: "info.circle")
-                        .font(.system(size: 15, weight: .semibold))
+                        .font(scaled(15, weight: .semibold))
                         .foregroundStyle(Brand.textTertiary)
                 }
                 .buttonStyle(PressScaleStyle())
@@ -238,9 +253,9 @@ struct ExerciseSelectScreen: View {
             Circle()
                 .fill(isOn ? AnyShapeStyle(grad) : AnyShapeStyle(Color.clear))
                 .overlay(Circle().strokeBorder(isOn ? Color.clear : Brand.textTertiary, lineWidth: 1.5))
-                .frame(width: 22, height: 22)
+                .frame(width: 22 * uiScale, height: 22 * uiScale)
             Image(systemName: "checkmark")
-                .font(.system(size: 11, weight: .black))
+                .font(scaled(11, weight: .black))
                 .foregroundStyle(Brand.ink)
                 .opacity(isOn ? 1 : 0)
         }

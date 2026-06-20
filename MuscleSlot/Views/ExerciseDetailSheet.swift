@@ -16,9 +16,20 @@ struct ExerciseDetailSheet: View {
     let onClose: () -> Void
 
     @Environment(\.openURL) private var openURL
+    // iPad 判定（regular×regular は iPhone では発生しない）。iPhone は常に false。
+    @Environment(\.horizontalSizeClass) private var hSizeClass
+    @Environment(\.verticalSizeClass) private var vSizeClass
+    private var isPad: Bool { hSizeClass == .regular && vSizeClass == .regular }
+    /// iPad では本文の文字を一回り大きく見せる拡大率（iPhone は等倍）。
+    private var contentScale: CGFloat { isPad ? 1.4 : 1.0 }
 
     private var accent: Color { Brand.fixedAccent }
     private var grad: LinearGradient { Brand.fixedGradient }
+
+    /// iPad で size を contentScale 倍したフォント（iPhone は元のサイズ）。テキストは折り返しが効く。
+    private func scaled(_ size: CGFloat, weight: SwiftUI.Font.Weight, design: SwiftUI.Font.Design = .rounded) -> SwiftUI.Font {
+        .system(size: size * contentScale, weight: weight, design: design)
+    }
 
     var body: some View {
         ZStack {
@@ -33,16 +44,22 @@ struct ExerciseDetailSheet: View {
                         // 概要（detail）
                         if !exercise.localizedDetail.isEmpty {
                             Text(exercise.localizedDetail)
-                                .font(Brand.Font.body).foregroundStyle(Brand.textSecondary)
+                                .font(scaled(15, weight: .medium)).foregroundStyle(Brand.textSecondary)
                                 .fixedSize(horizontal: false, vertical: true)
                         }
 
-                        // 動作手順（見出し右に「動画で見る」を併置）
+                        // 動作手順（iPhone は見出し右に「動画で見る」を併置）
                         if !exercise.localizedSteps.isEmpty {
                             stepsSection(exercise.localizedSteps)
                         } else if exercise.localizedDetail.isEmpty {
                             Text("説明準備中")
-                                .font(Brand.Font.body).foregroundStyle(Brand.textTertiary)
+                                .font(scaled(15, weight: .medium)).foregroundStyle(Brand.textTertiary)
+                        }
+
+                        // iPad は説明の下に大きいフル幅の「動画で見る」ボタンを配置。
+                        if isPad {
+                            videoButtonLarge
+                                .padding(.top, 6)
                         }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -52,6 +69,9 @@ struct ExerciseDetailSheet: View {
         }
         .presentationBackground(.clear)
         .presentationDetents([.medium, .large])
+        // iPad ではフォームシートが小さく見えるので、大きめのページサイズにする。
+        // iPhone は presentationSizing を無視し、従来どおり detents で表示される。
+        .presentationSizing(.page)
     }
 
     // MARK: - メタチップ
@@ -68,11 +88,11 @@ struct ExerciseDetailSheet: View {
 
     private func metaChip(_ text: String, icon: String) -> some View {
         HStack(spacing: 5) {
-            Image(systemName: icon).font(.system(size: 11, weight: .bold))
-            Text(text).font(Brand.Font.caption)
+            Image(systemName: icon).font(scaled(11, weight: .bold))
+            Text(text).font(scaled(11, weight: .semibold))
         }
         .foregroundStyle(accent)
-        .padding(.horizontal, 11).padding(.vertical, 7)
+        .padding(.horizontal, 11 * contentScale).padding(.vertical, 7 * contentScale)
         .background(
             Capsule().fill(accent.opacity(0.14))
                 .overlay(Capsule().strokeBorder(accent.opacity(0.4), lineWidth: 1))
@@ -86,19 +106,20 @@ struct ExerciseDetailSheet: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack(alignment: .center) {
                 Label("動作", systemImage: "figure.run")
-                    .font(Brand.Font.headline).foregroundStyle(Brand.textPrimary)
+                    .font(scaled(17, weight: .bold)).foregroundStyle(Brand.textPrimary)
                 Spacer(minLength: 12)
-                videoButton
+                // iPad では手順の下に大きいボタンを別途出すので、ここでは出さない。
+                if !isPad { videoButton }
             }
             ForEach(Array(steps.enumerated()), id: \.offset) { i, step in
                 HStack(alignment: .top, spacing: 12) {
                     Text("\(i + 1)")
-                        .font(.system(size: 14, weight: .black, design: .rounded))
+                        .font(scaled(14, weight: .black))
                         .foregroundStyle(Brand.ink)
-                        .frame(width: 26, height: 26)
+                        .frame(width: 26 * contentScale, height: 26 * contentScale)
                         .background(Circle().fill(grad).brandGlow(accent, radius: 4, strength: 0.4))
                     Text(step)
-                        .font(Brand.Font.body).foregroundStyle(Brand.textSecondary)
+                        .font(scaled(15, weight: .medium)).foregroundStyle(Brand.textSecondary)
                         .fixedSize(horizontal: false, vertical: true)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.top, 3)
@@ -115,14 +136,14 @@ struct ExerciseDetailSheet: View {
         Button(action: openVideo) {
             HStack(spacing: 8) {
                 Image(systemName: "play.rectangle.fill")
-                    .font(.system(size: 16, weight: .bold))
+                    .font(scaled(16, weight: .bold))
                 Text("動画で見る")
-                    .font(Brand.Font.body)
+                    .font(scaled(15, weight: .medium))
                 Image(systemName: "arrow.up.forward")
-                    .font(.system(size: 12, weight: .bold)).foregroundStyle(Brand.textTertiary)
+                    .font(scaled(12, weight: .bold)).foregroundStyle(Brand.textTertiary)
             }
             .foregroundStyle(accent)
-            .padding(.horizontal, 16).padding(.vertical, 11)
+            .padding(.horizontal, 16 * contentScale).padding(.vertical, 11 * contentScale)
             .background(
                 Capsule().fill(accent.opacity(0.14))
                     .overlay(Capsule().strokeBorder(accent.opacity(0.4), lineWidth: 1))
@@ -130,6 +151,33 @@ struct ExerciseDetailSheet: View {
         }
         .buttonStyle(.plain)
         .fixedSize()
+    }
+
+    /// iPad 用の大きいフル幅版。説明の下に置く。
+    private var videoButtonLarge: some View {
+        Button(action: openVideo) {
+            HStack(spacing: 10) {
+                Image(systemName: "play.rectangle.fill")
+                    .font(scaled(20, weight: .bold))
+                Text("動画で見る")
+                    .font(scaled(18, weight: .bold))
+                Spacer(minLength: 8)
+                Image(systemName: "arrow.up.forward")
+                    .font(scaled(15, weight: .bold)).foregroundStyle(Brand.textTertiary)
+            }
+            .foregroundStyle(accent)
+            .padding(.horizontal, 22).padding(.vertical, 18)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(
+                RoundedRectangle(cornerRadius: 18, style: .continuous)
+                    .fill(accent.opacity(0.14))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 18, style: .continuous)
+                            .strokeBorder(accent.opacity(0.4), lineWidth: 1)
+                    )
+            )
+        }
+        .buttonStyle(.plain)
     }
 
     /// YouTube アプリがあればアプリで、無ければ Safari で検索結果を開く。
