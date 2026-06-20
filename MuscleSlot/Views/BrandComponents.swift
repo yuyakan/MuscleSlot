@@ -53,52 +53,6 @@ struct BrandSegmented<T: Hashable>: View {
     }
 }
 
-// MARK: - スライダー（Slider の置換）
-
-/// つまみが発光するネオンスライダー。
-struct BrandSlider: View {
-    @Binding var value: Double // 0...1
-    var accentGradient: LinearGradient
-    var glow: Color
-
-    var body: some View {
-        GeometryReader { geo in
-            let w = geo.size.width
-            let knob: CGFloat = 26
-            let x = CGFloat(value.clamped01) * (w - knob)
-            ZStack(alignment: .leading) {
-                // トラック
-                Capsule()
-                    .fill(Brand.inkDeep)
-                    .overlay(Capsule().strokeBorder(Brand.hairline, lineWidth: 1))
-                    .frame(height: 8)
-                // 進捗
-                Capsule()
-                    .fill(accentGradient)
-                    .frame(width: max(knob, x + knob), height: 8)
-                    .brandGlow(glow, radius: 6, strength: 0.6)
-                // つまみ
-                Circle()
-                    .fill(.white)
-                    .frame(width: knob, height: knob)
-                    .overlay(Circle().fill(accentGradient).padding(6))
-                    .brandGlow(glow, radius: 10, strength: 0.9)
-                    .offset(x: x)
-            }
-            .frame(maxHeight: .infinity)
-            .contentShape(Rectangle())
-            .gesture(
-                DragGesture(minimumDistance: 0)
-                    .onChanged { g in
-                        let nv = Double((g.location.x - knob / 2) / (w - knob))
-                        value = nv.clamped01
-                    }
-            )
-        }
-        .frame(height: 28)
-    }
-}
-
 // MARK: - トグル（Toggle の置換）
 
 struct BrandToggle: View {
@@ -261,8 +215,3 @@ struct BrandIconButton: View {
     }
 }
 
-// MARK: - Double 拡張
-
-extension Double {
-    var clamped01: Double { Swift.min(1, Swift.max(0, self)) }
-}

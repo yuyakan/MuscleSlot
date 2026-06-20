@@ -177,16 +177,3 @@ extension View {
             .shadow(color: color.opacity(strength * 0.35), radius: radius * 1.6)
     }
 }
-
-// MARK: - 互換シム（既存呼び出しを壊さないため）
-
-enum Theme {
-    static func backgroundGradient(mode: SlotMode, chaos: Double) -> some View {
-        Brand.background(mode: mode, chaos: chaos)
-    }
-    static func accent(mode: SlotMode, chaos: Double) -> Color {
-        Brand.accent(mode: mode, chaos: chaos)
-    }
-    static let reelText = Brand.textPrimary
-    static let reelBackground = Brand.inkDeep
-}
