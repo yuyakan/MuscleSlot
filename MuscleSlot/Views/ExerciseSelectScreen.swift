@@ -215,15 +215,10 @@ struct ExerciseSelectScreen: View {
     private func exerciseRow(_ exercise: Exercise) -> some View {
         let isOn = app.isEnabled(exercise)
         return HStack(spacing: 10) {
-            VStack(alignment: .leading, spacing: 1) {
-                Text(exercise.displayName)
-                    .font(scaled(15, weight: .medium))
-                    .foregroundStyle(isOn ? Brand.textPrimary : Brand.textTertiary)
-                    .lineLimit(1).minimumScaleFactor(0.8)
-                Text("\(exercise.repRange.lowerBound)〜\(exercise.repRange.upperBound)\(exercise.unit.suffix)")
-                    .font(scaled(11, weight: .semibold))
-                    .foregroundStyle(isOn ? accent.opacity(0.9) : Brand.textTertiary)
-            }
+            Text(exercise.displayName)
+                .font(scaled(15, weight: .medium))
+                .foregroundStyle(isOn ? Brand.textPrimary : Brand.textTertiary)
+                .lineLimit(1).minimumScaleFactor(0.8)
             Spacer(minLength: 4)
             if !exercise.detail.isEmpty || !exercise.steps.isEmpty {
                 Button { detailExercise = exercise } label: {

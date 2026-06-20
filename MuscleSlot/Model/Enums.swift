@@ -119,11 +119,11 @@ enum RepUnit: String, Codable, Hashable {
         }
     }
 
-    /// カオス全開時の単位別上限レンジ。「プランク3秒」「ベンチ50回」を制御。
+    /// 回数レンジ設定スライダーの選択可能な絶対範囲（単位別）。
     var chaosRange: ClosedRange<Int> {
         switch self {
-        case .reps:    return 1...50
-        case .seconds: return 10...90
+        case .reps:    return 1...100
+        case .seconds: return 10...180
         }
     }
 }

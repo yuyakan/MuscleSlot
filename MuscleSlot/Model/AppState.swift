@@ -55,6 +55,39 @@ final class AppState {
         didSet { defaults.set(Array(enabledExercises), forKey: Keys.exercises) }
     }
 
+    // MARK: 回数・秒数レンジ（ユーザーが上下限を決める）
+    // 種目の単位ごとに別レンジ（「3秒プランク」のような単位ミスマッチを防ぐ）。
+    // 抽選はこのレンジ内で一様に引く（SlotEngine.count）。
+
+    /// 「適正範囲を適用」: ON なら各種目の repRange、OFF ならユーザー指定レンジで抽選。
+    var useRepRange: Bool {
+        didSet { defaults.set(useRepRange, forKey: Keys.useRepRange) }
+    }
+    /// 回数種目の下限（reps）。
+    var repsMin: Int {
+        didSet { defaults.set(repsMin, forKey: Keys.repsMin) }
+    }
+    /// 回数種目の上限（reps）。
+    var repsMax: Int {
+        didSet { defaults.set(repsMax, forKey: Keys.repsMax) }
+    }
+    /// 秒数種目の下限（seconds）。
+    var secsMin: Int {
+        didSet { defaults.set(secsMin, forKey: Keys.secsMin) }
+    }
+    /// 秒数種目の上限（seconds）。
+    var secsMax: Int {
+        didSet { defaults.set(secsMax, forKey: Keys.secsMax) }
+    }
+
+    /// 単位に応じたユーザー指定レンジ（下限 ≤ 上限を保証）。
+    func countRange(for unit: RepUnit) -> ClosedRange<Int> {
+        switch unit {
+        case .reps:    return min(repsMin, repsMax)...max(repsMin, repsMax)
+        case .seconds: return min(secsMin, secsMax)...max(secsMin, secsMax)
+        }
+    }
+
     var chaos: ChaosLevel { ChaosLevel(value: chaosValue) }
 
     /// pickedExerciseID から実体を逆引き。
@@ -95,6 +128,17 @@ final class AppState {
         } else {
             self.enabledExercises = Set(ExerciseDatabase.all.map(\.id))
         }
+
+        // 既定は「適正範囲を適用」ON（各種目の適正回数で出す）。
+        self.useRepRange = defaults.object(forKey: Keys.useRepRange) as? Bool ?? true
+
+        // ユーザー指定レンジの既定は単位の許容上限いっぱい（OFF時に使う）。
+        let repsBounds = RepUnit.reps.chaosRange
+        let secsBounds = RepUnit.seconds.chaosRange
+        self.repsMin = defaults.object(forKey: Keys.repsMin) as? Int ?? repsBounds.lowerBound
+        self.repsMax = defaults.object(forKey: Keys.repsMax) as? Int ?? repsBounds.upperBound
+        self.secsMin = defaults.object(forKey: Keys.secsMin) as? Int ?? secsBounds.lowerBound
+        self.secsMax = defaults.object(forKey: Keys.secsMax) as? Int ?? secsBounds.upperBound
     }
 
     // MARK: - 操作
@@ -159,5 +203,10 @@ final class AppState {
         static let haptics = "ms.haptics"
         static let onboard = "ms.onboard"
         static let exercises = "ms.exercises"
+        static let useRepRange = "ms.useRepRange"
+        static let repsMin = "ms.repsMin"
+        static let repsMax = "ms.repsMax"
+        static let secsMin = "ms.secsMin"
+        static let secsMax = "ms.secsMax"
     }
 }

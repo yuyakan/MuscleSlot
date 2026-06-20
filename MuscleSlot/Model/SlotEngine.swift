@@ -24,6 +24,10 @@ struct SlotEngine {
         var fixedBodyPart: BodyPart? = nil
         /// パターンでユーザーが種目を固定したとき（回数だけ抽選する）。
         var fixedExercise: Exercise? = nil
+        /// 「適正範囲を適用」: true なら種目の recommendedRange、false なら countRange で抽選。
+        var useRepRange: Bool
+        /// 単位ごとのユーザー指定回数レンジ（useRepRange=false のとき使う）。
+        var countRange: (RepUnit) -> ClosedRange<Int>
     }
 
     // MARK: - プール（器具＋種目選択フィルター）
@@ -112,13 +116,10 @@ struct SlotEngine {
 
     // MARK: - 回数抽選
 
-    /// 実用は種目の適正レンジ、カオスはカオス度に応じて散らす。
+    /// 「適正範囲を適用」ON なら種目の現実的レンジ（recommendedRange）、OFF ならユーザー指定レンジで引く。
+    /// 種目の単位に応じてレンジを選ぶので、単位ミスマッチは起きない。
     private static func count(for exercise: Exercise, context: Context) -> Int {
-        switch context.mode {
-        case .practical:
-            return Int.random(in: exercise.repRange)
-        case .chaos:
-            return context.chaos.reps(for: exercise)
-        }
+        let range = context.useRepRange ? exercise.recommendedRange : context.countRange(exercise.unit)
+        return Int.random(in: range)
     }
 }

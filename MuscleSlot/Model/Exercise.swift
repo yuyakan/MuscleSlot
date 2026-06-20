@@ -43,6 +43,19 @@ struct Exercise: Identifiable, Hashable, Codable {
         return (t?.isEmpty == false) ? t! : steps
     }
 
+    /// 抽選・表示に使う「現実的な回数レンジ」。種目個別の repRange より広め。
+    /// 強度（と単位）から導出して全種目で一貫させる。
+    /// - 秒数種目: 10〜120秒
+    /// - heavy: 3〜15 / moderate: 5〜30 / light: 10〜50
+    var recommendedRange: ClosedRange<Int> {
+        if unit == .seconds { return 10...120 }
+        switch intensity {
+        case .heavy:    return 3...15
+        case .moderate: return 5...30
+        case .light:    return 10...50
+        }
+    }
+
     /// 判定ロジック: 種目の必要タグ ⊆ 環境の有効タグ なら出せる。
     /// 自重も普通の器具タグとして扱う（自重OFFなら自重種目も出ない）。
     func isAvailable(with available: Set<Equipment>) -> Bool {

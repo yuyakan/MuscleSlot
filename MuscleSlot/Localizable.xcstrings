@@ -1,6 +1,16 @@
 {
   "sourceLanguage" : "ja",
   "strings" : {
+    "%@ ・ %lld〜%lld%@" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ ・ %2$lld〜%3$lld%4$@"
+          }
+        }
+      }
+    },
     "%lld" : {
 
     },
@@ -24,6 +34,16 @@
         }
       }
     },
+    "%lld%@" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld%2$@"
+          }
+        }
+      }
+    },
     "MUSCLE" : {
 
     },
@@ -41,6 +61,7 @@
 
     },
     "あとから家／ジムのワンタップで切り替えられます。" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -231,6 +252,16 @@
         }
       }
     },
+    "各種目に最適な回数で抽選します。OFFにすると下の範囲を使います。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Picks the ideal count for each exercise. Turn off to use the ranges below."
+          }
+        }
+      }
+    },
     "器具か種目選択を見直してね" : {
       "localizations" : {
         "en" : {
@@ -259,6 +290,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Reps"
+          }
+        }
+      }
+    },
+    "回数で行う種目（例: 腕立て）に適用" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Applies to rep-based exercises (e.g. push-ups)"
+          }
+        }
+      }
+    },
+    "回数の範囲" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reps range"
           }
         }
       }
@@ -293,6 +344,16 @@
         }
       }
     },
+    "時間で行う種目（例: プランク）に適用" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Applies to timed exercises (e.g. plank)"
+          }
+        }
+      }
+    },
     "有効な種目が0件。器具の絞り込みを見直してね。" : {
       "localizations" : {
         "en" : {
@@ -310,6 +371,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : " sec"
+          }
+        }
+      }
+    },
+    "秒数の範囲" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seconds range"
           }
         }
       }
@@ -415,6 +486,16 @@
         }
       }
     },
+    "設定" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
+          }
+        }
+      }
+    },
     "説明準備中" : {
       "localizations" : {
         "en" : {
@@ -435,6 +516,16 @@
         }
       }
     },
+    "適正範囲で出す" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use recommended reps"
+          }
+        }
+      }
+    },
     "部位" : {
       "localizations" : {
         "en" : {
@@ -446,6 +537,7 @@
       }
     },
     "部位・種目・回数をスロットで決める。\nまずは今の環境を教えて。" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

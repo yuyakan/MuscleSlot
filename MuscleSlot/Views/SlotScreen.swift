@@ -17,6 +17,7 @@ struct SlotScreen: View {
     @State private var machine = SlotMachineModel()
     @State private var showDetail = false
     @State private var showExerciseSelect = false
+    @State private var showSettings = false
     /// 種目タブのカルーセル中央に来ている種目名（引く前の説明対象）。
     @State private var centerCardName: String?
 
@@ -57,8 +58,8 @@ struct SlotScreen: View {
                         .padding(.leading, 28)
                         .padding(.top, 20)
 
-                    // iPad: 種目一覧ボタンを画面右上に配置。
-                    exerciseListButton
+                    // iPad: 右上ボタン群（設定・種目一覧）を画面右上に配置。
+                    topRightButtons
                         .scaleEffect(1.4, anchor: .topTrailing)
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
                         .padding(.trailing, 28)
@@ -79,6 +80,9 @@ struct SlotScreen: View {
         }
         .sheet(isPresented: $showExerciseSelect) {
             ExerciseSelectScreen().environment(app)
+        }
+        .sheet(isPresented: $showSettings) {
+            SettingsSheet(decidedExercise: decidedExercise).environment(app)
         }
     }
 
@@ -147,15 +151,31 @@ struct SlotScreen: View {
 
     private var topBar: some View {
         HStack(spacing: 10) {
-            // iPad ではワードマーク／種目ボタンを画面の左上・右上のオーバーレイに出すので、
+            // iPad ではワードマーク／右上ボタン群を画面の左上・右上のオーバーレイに出すので、
             // ここでは隠す（場所だけ確保）。iPhone は従来どおり表示。
             wordmark.opacity(isPad ? 0 : 1)
             Spacer()
-            // 種目を選ぶ（器具フィルターも統合）。
-            exerciseListButton.opacity(isPad ? 0 : 1)
+            // 設定（回数レンジ）＋ 種目を選ぶ（器具フィルターも統合）。
+            topRightButtons.opacity(isPad ? 0 : 1)
         }
         // 下タブと同じくらいの高さを確保して上下のバランスをそろえる。
         .frame(height: 49)
+    }
+
+    /// 右上のボタン群（設定・種目一覧）。iPad ではオーバーレイで右上に再利用する。
+    /// 「種目」タブは回数・秒数が無関係なので設定（歯車）ボタンは出さない。
+    private var topRightButtons: some View {
+        HStack(spacing: 10) {
+            if pattern != .partExercise {
+                settingsButton
+            }
+            exerciseListButton
+        }
+    }
+
+    /// 設定（回数・秒数レンジ）を開くボタン。
+    private var settingsButton: some View {
+        capsuleButton(icon: "slider.horizontal.3") { showSettings = true }
     }
 
     /// 種目一覧（種目設定）を開くボタン。
@@ -389,6 +409,16 @@ struct SlotScreen: View {
         }
     }
 
+    /// 設定シートに渡す「いま決まっている種目」。
+    /// - 引いた結果があればその種目（フル/回数）
+    /// - 回数タブは引く前でも選択中の種目
+    /// それ以外（フルで引く前）は nil。
+    private var decidedExercise: Exercise? {
+        if let result = machine.result { return result.exercise }
+        if pattern == .repsOnly { return effectivePickedExercise }
+        return nil
+    }
+
     /// 説明対象があり、かつ説明文があるとき info ボタンを有効化。
     private var canShowDetail: Bool {
         detailExercise?.detail.isEmpty == false
@@ -449,7 +479,9 @@ struct SlotScreen: View {
         SlotEngine.Context(
             mode: app.mode, chaos: app.chaos, equipment: app.equipment,
             enabledExercises: app.enabledExercises,
-            fixedExercise: pattern.needsManualPick ? effectivePickedExercise : nil)
+            fixedExercise: pattern.needsManualPick ? effectivePickedExercise : nil,
+            useRepRange: app.useRepRange,
+            countRange: { app.countRange(for: $0) })
     }
 
     /// 「回数だけ」で出せる種目が無いときだけレバー無効。
