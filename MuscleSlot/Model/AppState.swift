@@ -88,6 +88,12 @@ final class AppState {
         }
     }
 
+    // MARK: - セッション限定の状態（永続化しない）
+
+    /// 結果が出た「引き」の通し番号。全タブ共通で、広告/レビューの表示頻度判定に使う。
+    /// アプリを起動し直すとリセットされる（意図的に永続化しない）。
+    var spinCount = 0
+
     var chaos: ChaosLevel { ChaosLevel(value: chaosValue) }
 
     /// pickedExerciseID から実体を逆引き。

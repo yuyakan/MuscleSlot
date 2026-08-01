@@ -8,5 +8,24 @@
 	<array>
 		<string>youtube</string>
 	</array>
+
+	<!-- AdMob アプリID（本番）。アプリIDはデバッグ/リリースで共通で問題ない。
+	     デバッグ時にテスト広告を出すのは広告ユニットID側（InterstitialAdManager）で切り替える。 -->
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-3155724310732667~4222054250</string>
+
+	<!-- SKAdNetwork: 広告のアトリビューション計測に必要（Googleの識別子）。 -->
+	<key>SKAdNetworkItems</key>
+	<array>
+		<dict>
+			<key>SKAdNetworkIdentifier</key>
+			<string>cstr6suwn9.skadnetwork</string>
+		</dict>
+	</array>
+
+	<!-- ATT（App Tracking Transparency）許可ダイアログの説明文。
+	     未設定だと requestTrackingAuthorization でクラッシュする（必須）。 -->
+	<key>NSUserTrackingUsageDescription</key>
+	<string>あなたに合った広告を表示するために使用します。トラッキングを許可しなくてもアプリはすべてご利用いただけます。</string>
 </dict>
 </plist>

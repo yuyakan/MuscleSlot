@@ -10,6 +10,8 @@ import SwiftUI
 
 struct SlotScreen: View {
     @Environment(AppState.self) private var app
+    @Environment(InterstitialAdManager.self) private var ads
+    @Environment(ReviewRequestManager.self) private var review
 
     /// このタブが受け持つスロットパターン。
     let pattern: SlotPattern
@@ -491,5 +493,15 @@ struct SlotScreen: View {
 
     private func spin() async {
         await machine.spinSingle(context: context, app: app, pattern: pattern)
+        // 結果が出た引きだけを数えて（空引きは対象外）、広告とレビューを振り分ける。
+        // カウンタは AppState に持たせ、全タブで通し番号を共有する。
+        guard machine.result != nil else { return }
+        app.spinCount += 1
+        // 広告は3回に1回（3,6,9…）、レビューはその1回前（2,5,8…）で被らせない。
+        switch app.spinCount % 3 {
+        case 0: ads.show()
+        case 2: review.requestReview()
+        default: break
+        }
     }
 }

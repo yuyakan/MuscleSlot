@@ -6,16 +6,33 @@
 //
 
 import SwiftUI
+import GoogleMobileAds
 
 @main
 struct MuscleSlotApp: App {
     @State private var appState = AppState()
+    /// インタースティシャル広告。頻度判定は SlotScreen 側。
+    @State private var ads = InterstitialAdManager()
+    /// レビュー依頼ダイアログ。頻度判定は SlotScreen 側（広告と被らないタイミング）。
+    @State private var review = ReviewRequestManager()
+    /// 広告同意フロー（UMP同意＋ATT許可）。同意が済んでからSDK起動＋先読みする。
+    @State private var consent = ConsentManager()
 
     var body: some Scene {
         WindowGroup {
             RootView()
                 .environment(appState)
+                .environment(ads)
+                .environment(review)
+                .environment(consent)
                 .preferredColorScheme(.dark)
+                .task {
+                    // UMP同意→ATT許可を取り、広告可能になったらSDK起動＋先読み。
+                    consent.start {
+                        MobileAds.shared.start(completionHandler: nil)
+                        ads.preload()
+                    }
+                }
         }
     }
 }
