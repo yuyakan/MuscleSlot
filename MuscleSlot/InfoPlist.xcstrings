@@ -1,0 +1,120 @@
+{
+  "sourceLanguage" : "ja",
+  "strings" : {
+    "CFBundleDisplayName" : {
+      "comment" : "Bundle display name",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Shuffit"
+          }
+        }
+      }
+    },
+    "CFBundleName" : {
+      "comment" : "Bundle name",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "MuscleSlot"
+          }
+        }
+      }
+    },
+    "NSUserTrackingUsageDescription" : {
+      "comment" : "ATT prompt: explains why the app requests tracking permission (for ads).",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Wird verwendet, um dir relevantere Werbung zu zeigen. Du kannst die gesamte App nutzen, auch wenn du das Tracking nicht erlaubst."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Used to show ads that are more relevant to you. You can use the entire app even if you don't allow tracking."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Se usa para mostrarte anuncios más relevantes. Puedes usar toda la app aunque no permitas el seguimiento."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Utilisé pour vous montrer des publicités plus pertinentes. Vous pouvez utiliser toute l'app même sans autoriser le suivi."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Digunakan untuk menampilkan iklan yang lebih relevan bagi Anda. Anda tetap dapat menggunakan seluruh aplikasi meski tidak mengizinkan pelacakan."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Usato per mostrarti annunci più pertinenti. Puoi usare tutta l'app anche senza consentire il tracciamento."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "あなたに合った広告を表示するために使用します。トラッキングを許可しなくてもアプリはすべてご利用いただけます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "회원님에게 더 관련성 높은 광고를 표시하기 위해 사용됩니다. 추적을 허용하지 않아도 앱의 모든 기능을 이용할 수 있습니다."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Utilizado para mostrar anúncios mais relevantes para si. Pode usar toda a aplicação mesmo sem permitir o rastreamento."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Usado para exibir anúncios mais relevantes para você. Você pode usar todo o app mesmo sem permitir o rastreamento."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Используется для показа более релевантной рекламы. Вы можете пользоваться всем приложением, даже если не разрешите отслеживание."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "ใช้เพื่อแสดงโฆษณาที่เกี่ยวข้องกับคุณมากขึ้น คุณสามารถใช้งานแอปได้ทั้งหมดแม้ไม่อนุญาตการติดตาม"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "用于向您展示更相关的广告。即使不允许跟踪，您也可以使用应用的全部功能。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "用於向您顯示更相關的廣告。即使不允許追蹤，您仍可使用應用程式的所有功能。"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

@@ -185,14 +185,13 @@ struct SlotScreen: View {
         capsuleButton(icon: "checklist") { showExerciseSelect = true }
     }
 
-    /// 「MUSCLE SLOT」ワードマーク。
+    /// 「SHUFFIT」ワードマーク。
     private var wordmark: some View {
-        HStack(spacing: 5) {
-            Text("MUSCLE").font(.system(size: 10, weight: .black, design: .rounded))
-                .tracking(3).foregroundStyle(accent).brandGlow(accent, radius: 5)
-            Text("SLOT").font(.system(size: 13, weight: .black, design: .rounded))
-                .tracking(5).foregroundStyle(Brand.textPrimary)
-        }
+        Text("SHUFFIT")
+            .font(.system(size: 13, weight: .black, design: .rounded))
+            .tracking(4)
+            .foregroundStyle(Brand.textPrimary)
+            .brandGlow(accent, radius: 5)
     }
 
     // MARK: - 左パネル（上=設定 / 下=説明）。スロットを中央に寄せる役割。
