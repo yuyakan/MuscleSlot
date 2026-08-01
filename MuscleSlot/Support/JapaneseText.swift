@@ -2,20 +2,25 @@
 //  JapaneseText.swift
 //  MuscleSlot
 //
-//  日本語の種目名を自然な位置で折り返すためのヘルパ。
-//  AttributedString に日本語ロケールを付けると、iOS が禁則処理＋
-//  単語境界を考慮した改行を行い、カタカナ語の途中での不自然な改行を減らす。
+//  種目名を各言語で自然な位置に折り返すためのヘルパ。
+//  AttributedString に言語タグを付けると、iOS が禁則処理や辞書ベースの改行を行い、
+//  カタカナ語や中国語・タイ語の途中での不自然な改行を減らす。
 //
 
 import SwiftUI
 
 extension String {
-    /// 日本語ロケールを付与した AttributedString。Text(_:) に渡して使う。
-    /// 英語ロケールでは言語タグを付けない（英語テキストに日本語の禁則改行を当てないため）。
+    /// 現在の UI 言語に応じた言語タグを付けた AttributedString。Text(_:) に渡して使う。
+    /// CJK（日本語・中国語）とタイ語だけタグを付ける。空白で区切る言語
+    /// （韓国語・ラテン系・キリル系）は標準の単語境界改行で十分なのでタグ無し。
     var jaWrapped: AttributedString {
         var s = AttributedString(self)
-        if !ExerciseTranslations.usesEnglish {
-            s.languageIdentifier = "ja"
+        switch AppLanguage.current {
+        case "ja":      s.languageIdentifier = "ja"
+        case "zh-Hans": s.languageIdentifier = "zh-Hans"
+        case "zh-Hant": s.languageIdentifier = "zh-Hant"
+        case "th":      s.languageIdentifier = "th"   // タイ語は空白なし→辞書ベース改行に必要
+        default:        break
         }
         return s
     }

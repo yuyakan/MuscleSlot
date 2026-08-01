@@ -11,13 +11,26 @@ import Foundation
 
 extension Exercise {
 
-    /// YouTube 検索に使うクエリ。表示名（ロケール対応）に絞り込み語を足して精度を上げる。
-    /// 英語ロケールでは英語名＋"exercise form"、日本語では日本語名＋"筋トレ"。
+    /// YouTube 検索に使うクエリ。表示名（ロケール対応）に各言語の絞り込み語を足して精度を上げる。
+    /// 例: 英語なら「<英名> exercise form」、日本語なら「<和名> 筋トレ」。
     var videoSearchQuery: String {
-        if ExerciseTranslations.usesEnglish {
-            return "\(displayName) exercise form"
+        let suffix: String
+        switch AppLanguage.current {
+        case "en":          suffix = "exercise form"
+        case "zh-Hans":     suffix = "健身 动作"
+        case "zh-Hant":     suffix = "健身 動作"
+        case "ko":          suffix = "운동 자세"
+        case "es":          suffix = "ejercicio técnica"
+        case "fr":          suffix = "exercice technique"
+        case "de":          suffix = "Übung Ausführung"
+        case "pt-BR", "pt": suffix = "exercício execução"
+        case "it":          suffix = "esercizio esecuzione"
+        case "ru":          suffix = "упражнение техника"
+        case "id":          suffix = "latihan teknik"
+        case "th":          suffix = "ท่าออกกำลังกาย"
+        default:            suffix = "筋トレ"   // ja
         }
-        return "\(displayName) 筋トレ"
+        return "\(displayName) \(suffix)"
     }
 
     /// YouTube アプリを直接開くための URL（`youtube://`）。

@@ -1,5 +1,5 @@
 //
-//  ExerciseTranslations+Entries.swift
+//  ExerciseTranslations+Entries_en.swift
 //  MuscleSlot
 //
 //  76種目の英訳本体。キーは Exercise.name（日本語）。
@@ -10,7 +10,7 @@ import Foundation
 
 extension ExerciseTranslations {
 
-    static let entries: [String: Entry] = [
+    static let entries_en: [String: Entry] = [
 
         // MARK: - Chest（胸）
 
